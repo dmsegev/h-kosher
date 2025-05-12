@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>סימון מכשירים</title>
+  <style>
+    body {
+      background-color: #e0f7fa;
+      font-family: Arial, sans-serif;
+      font-size: 1.5em;
+      margin: 0;
+      padding: 1em;
+    }
+    h1 {
+      text-align: center;
+    }
+    .device {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1em 0;
+    }
+    .device-name {
+      flex: 1;
+    }
+    .dots {
+      display: flex;
+      gap: 1em;
+    }
+    .dot {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #333;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+    }
+    .dot.active {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>סימון מכשירים</h1>
+  <div id="device-list"></div>
+
+  <script>
+    window.onload = function() {
+    const devices = [
+      "פושט רגליים", "מכווץ רגליים", "מותח זרועות לחזה", "מותח זרועות מלמעלה",
+      "זרועות פשוטות קדימה - ראי", "זרועות פשוטות אחורה - ראי",
+      "גב כפוף", "דחיפות זרועות", "שרירי בטן", "משקלות", "אחר 1", "אחר 2"
+    ];
+
+    const container = document.getElementById('device-list');
+
+    devices.forEach(device => {
+      const row = document.createElement('div');
+      row.className = 'device';
+
+      const label = document.createElement('div');
+      label.className = 'device-name';
+      label.textContent = device;
+
+      const dots = document.createElement('div');
+      dots.className = 'dots';
+
+      for (let i = 0; i < 2; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.addEventListener('click', () => {
+          dot.classList.toggle('active');
+        });
+        dots.appendChild(dot);
+      }
+
+      row.appendChild(label);
+      row.appendChild(dots);
+      container.appendChild(row);
+    });
+      };
+  </script>
+</body>
+</html>
